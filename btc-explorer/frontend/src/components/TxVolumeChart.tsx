@@ -53,7 +53,7 @@ export default function TxVolumeChart({ data }: Props) {
       tooltip: {
         callbacks: {
           label: (context) => {
-            return `Volume: ${context.parsed.y.toFixed(8)} BTC`
+            return `Volume: ${(context.parsed.y ?? 0).toFixed(8)} BTC`
           }
         }
       }

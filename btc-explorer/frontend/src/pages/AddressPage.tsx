@@ -7,10 +7,10 @@ interface Props {
 }
 
 interface AddressInfo {
-  balance: number
-  total_received: number
-  total_sent: number
-  tx_count: number
+  balance?: number
+  total_received?: number
+  total_sent?: number
+  tx_count?: number
   txs: any[]
 }
 
@@ -88,19 +88,19 @@ export default function AddressPage({ address }: Props) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <div className="bg-gray-50 rounded-lg p-4">
             <p className="text-sm text-gray-600">Balance</p>
-            <p className="text-xl font-semibold">{info.balance.toFixed(8)} BTC</p>
+            <p className="text-xl font-semibold">{(info.balance ?? 0).toFixed(8)} BTC</p>
           </div>
           <div className="bg-gray-50 rounded-lg p-4">
             <p className="text-sm text-gray-600">Total Received</p>
-            <p className="text-xl font-semibold">{info.total_received.toFixed(8)} BTC</p>
+            <p className="text-xl font-semibold">{(info.total_received ?? 0).toFixed(8)} BTC</p>
           </div>
           <div className="bg-gray-50 rounded-lg p-4">
             <p className="text-sm text-gray-600">Total Sent</p>
-            <p className="text-xl font-semibold">{info.total_sent.toFixed(8)} BTC</p>
+            <p className="text-xl font-semibold">{(info.total_sent ?? 0).toFixed(8)} BTC</p>
           </div>
           <div className="bg-gray-50 rounded-lg p-4">
             <p className="text-sm text-gray-600">Transaction Count</p>
-            <p className="text-xl font-semibold">{info.tx_count.toLocaleString()}</p>
+            <p className="text-xl font-semibold">{(info.tx_count ?? 0).toLocaleString()}</p>
           </div>
         </div>
       </div>
