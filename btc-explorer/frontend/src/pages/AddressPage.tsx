@@ -26,13 +26,23 @@ export default function AddressPage({ address }: Props) {
       setError('')
       
       try {
-        const [infoRes, volumeRes] = await Promise.all([
-          axios.get(`/api/address/${address}`),
-          axios.get(`/api/address/${address}/volume-daily`)
-        ])
+        // Fetch address info
+        try {
+          const infoRes = await axios.get(`/api/address/${address}`)
+          setInfo(infoRes.data)
+        } catch (err: any) {
+          console.error('Error fetching address info:', err)
+          setInfo(null)
+        }
         
-        setInfo(infoRes.data)
-        setVolume(volumeRes.data)
+        // Fetch volume data separately to handle errors independently
+        try {
+          const volumeRes = await axios.get(`/api/address/${address}/volume-daily`)
+          setVolume(Array.isArray(volumeRes.data) ? volumeRes.data : [])
+        } catch (err: any) {
+          console.error('Error fetching volume data:', err)
+          setVolume([])
+        }
       } catch (err: any) {
         setError(err.response?.data?.detail || 'Failed to fetch address data')
       } finally {

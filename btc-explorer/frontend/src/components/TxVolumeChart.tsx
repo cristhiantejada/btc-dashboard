@@ -28,12 +28,15 @@ interface Props {
 
 export default function TxVolumeChart({ data }: Props) {
   const chartData = useMemo(() => {
+    // Ensure data is an array
+    const safeData = Array.isArray(data) ? data : []
+    
     return {
-      labels: data.map(d => d.date),
+      labels: safeData.map(d => d.date),
       datasets: [
         {
           label: 'Daily BTC Volume',
-          data: data.map(d => d.volume),
+          data: safeData.map(d => d.volume),
           fill: false,
           borderColor: 'rgb(59, 130, 246)',
           backgroundColor: 'rgba(59, 130, 246, 0.5)',
