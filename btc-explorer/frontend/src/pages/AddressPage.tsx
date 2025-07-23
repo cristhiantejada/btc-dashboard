@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import axios from 'axios'
+import axios from '../config/axios'
 import TxVolumeChart from '../components/TxVolumeChart'
 
 interface Props {
