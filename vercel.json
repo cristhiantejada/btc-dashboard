@@ -1,6 +1,7 @@
 {
-  "buildCommand": "cd btc-explorer/frontend && npm install && npm run build",
-  "outputDirectory": "btc-explorer/frontend/dist",
+  "rootDirectory": "btc-explorer",
+  "buildCommand": "cd frontend && npm install && npm run build",
+  "outputDirectory": "frontend/dist",
   "framework": null,
   "rewrites": [
     {
